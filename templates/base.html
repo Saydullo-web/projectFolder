@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saydilloxon Blog</title>
+        <!-- Favicon qo'shish -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Saydilloxon - Blog</a></h1>
+        <h2><a href="{% url 'post_new' %}">Yangi_post_yozish</a></h2>
+    </header>
+    {% if user.is_authenticated %}
+        <p>Xush kelibsiz, {{user.username}}!</p>
+        <p><a href="{% url 'logout' %}">Chiqib ketish</a></p>
+    {% else %}
+    <p>
+        <a href="{% url 'login' %}">Saytga kirish</a>
+        <a href="{% url 'signup' %}">Ro'yhatdan o'tish</a>
+    </p>
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Saydilloxon Blog</p>
+    </footer>
+</body>
+</html>
